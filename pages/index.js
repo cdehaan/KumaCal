@@ -43,11 +43,14 @@ export default function Home() {
       <main className={styles.main}>
         <img src="/walking.png" className={styles.icon} />
         <h3>Activity Tracking</h3>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} style={{margin: "1rem"}}>
           <textarea rows={5} name="activity" placeholder="What did you do today?" value={activityInput} onChange={(e) => setActivityInput(e.target.value)}></textarea>
           <input type="submit" value="Analyse Activity" />
         </form>
-        <div>I slept well from midnight until about 7am. Then I ate some cereal for breakfast. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes. I didn't do anything after that until 7pm when I had another salad.</div>
+        <span>Simple Description:</span>
+        <div>I slept well from midnight until about 7am. Then I ate some cereal for breakfast. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes.</div>
+        <span>Full Description:</span>
+        <div>I slept well from midnight until about 7am. Then I ate some cereal for breakfast. After that, I went for a bike ride outside in the park at about 9am for an hour. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes.</div>
         <ActivityDisplay data={result} />
       </main>
     </div>

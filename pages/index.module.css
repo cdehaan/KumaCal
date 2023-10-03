@@ -65,3 +65,16 @@
   font-weight: bold;
   margin-top: 40px;
 }
+
+.main ul {
+  width: 100%;
+}
+
+span.activityHeader {
+  font-size: 1.3rem;
+}
+
+.activityEntry {
+  border-bottom: #8e8ea0 0px solid;
+  padding-bottom: 1rem;
+}
