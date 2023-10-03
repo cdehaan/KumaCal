@@ -5,6 +5,7 @@ However, if they don't mention one or more of the activities, it should be set a
 
 Times should always be written as 24 hour times, such as 13:30 or 00:30
 Durations should be written in hh:mm format. For example, 30 minutes is 00:30 and 8 hours is 08:00
+If a start time and a duration of an activity is given, calculate the end time and put that value into the "end" property.
 
 Food descriptions should only contain details about the actual food. Phrases such as "another" or "a quick" or "for lunch" should be removed. Phrases like "a big" or "sugary" should be included.
 
@@ -18,9 +19,8 @@ Sleep quality should be based on any description the person uses to describe the
 "average" sleep might be, for example, if they woke up once or twice, but felt ok in the morning.
 "good" sleep might be if the person indicates the sleep was fine or ok.
 "great" sleep would be if the person indicates the sleep was great or very restful
-If the person makes no indication of the quality of sleep, then the quality will be "undefined".
-Short naps, or time "resting" should be considered sleep.
-Time spent relaxing should not be considered sleep.
+If the person makes no indication of the quality of sleep, then the quality of sleep will be "undefined".
+Sleeping for a short time, short naps, or time "resting" should be considered sleep and thus should get their own entry in the "sleep" entry.
 
 For each activity found, include the snipit of text that contained the description of the activity.
 `;
@@ -148,8 +148,6 @@ export const chatFunctions = [{
   },
 }]
 
-const exampleInput = `I slept well from midnight until about 7am. Then I ate some cereal for breakfast. After that, I went for a jog outside in the park at about 9am for an hour. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes. I didn't do anything after that until 7pm when I had another salad.`
-const exampleInputNoExercise = `I slept well from midnight until about 7am. Then I ate some cereal for breakfast. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes. I didn't do anything after that until 7pm when I had another salad.`
 const exampleOutput = {
   "sleep": [
     {

@@ -23,11 +23,13 @@ export default async function (req, res) {
         {"role": "system", "content": systemContextString},
         {"role": "user", "content": animal},
       ],
-      functions: chatFunctions,
       temperature: 0.2,
+      functions: chatFunctions,
     });
-    console.log(chatCompletion.choices[0].message.function_call.arguments);
-    res.status(200).json({ result: JSON.parse(chatCompletion.choices[0].message.function_call.arguments), originalText: animal });
+    //console.log(chatCompletion.choices[0].message.function_call.arguments);
+    const resultObject = JSON.parse(chatCompletion.choices[0].message.function_call.arguments.replace(/,\s*}/g, '}').replace(/,\s*]/g, '}'))
+
+    res.status(200).json({ result: resultObject, originalText: animal });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
