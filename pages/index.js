@@ -1,12 +1,11 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./index.module.css";
 import ActivityDisplay from "./ActivityDisplay";
 
 
 export default function Home() {
   const [activityInput, setActivityInput] = useState("");
-  const [recognition, setRecognition] = useState(null);
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -32,42 +31,6 @@ export default function Home() {
       console.error(error);
       alert(error.message);
     }
-  }
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && 'webkitSpeechRecognition' in window) {
-      const recognitionInstance = new webkitSpeechRecognition();
-      recognitionInstance.continuous = true;
-      recognitionInstance.interimResults = false;
-      recognitionInstance.lang = "en-US";
-      setRecognition(recognitionInstance);
-    } else {
-      console.log("Speech recognition is still not supported in this browser. Please use Chrome or another supported browser.");
-    }
-  }, []);
-
-  function startDictation() {
-    if (recognition) {
-      recognition.start();
-
-      recognition.onresult = function(e) {
-        setActivityInput(e.results[0][0].transcript)
-          //document.getElementById('result').value = e.results[0][0].transcript;
-          //recognition.stop();
-      };
-
-      recognition.onerror = function(e) {
-          recognition.stop();
-          console.log(e)
-      }
-
-    } else {
-        alert("Speech recognition is not supported in this browser. Please use Chrome or another supported browser.");
-    }
-  }
-
-  function stopDictation() {
-    recognition.stop();
   }
 
   return (
