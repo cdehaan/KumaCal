@@ -66,6 +66,15 @@
   margin-top: 40px;
 }
 
+div.exampleGrid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+span.exampleHeader {
+  font-size: 1.15rem;
+}
+
 .main ul {
   width: 100%;
 }

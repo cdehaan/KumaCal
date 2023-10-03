@@ -1,4 +1,4 @@
-export const systemContextString = `You will receive free-form text from a person. You must extract information about 4 topics: when the person slept, what they ate and when, when they went outside and why, and what exercise they did that day.
+export const systemContextString = `You will receive free-form text from a person. You must extract information about 4 topics: when the person slept, what they ate and when, when they went outside and why, and what physical activity (called "exercise") they did that day.
 
 When the person explicitly says that they did not do an activity, return an empty array for that entry.
 However, if they don't mention one or more of the activities, it should be set as "undefined".
@@ -8,8 +8,9 @@ Durations should be written in hh:mm format. For example, 30 minutes is 00:30 an
 
 Food descriptions should only contain details about the actual food. Phrases such as "another" or "a quick" or "for lunch" should be removed. Phrases like "a big" or "sugary" should be included.
 
-If the person describes an activity that is both exercise and typically done outside, such as riding a bike, you should make 2 matching entries; one in "exercise" and also one in "outside" using the same times and description.
-If it is unclear whether an activity qualifies as "exercise" or "outside", you should error on the side of including it in the returned data. It is better to include more data than needed rather than exlcude data that was needed.
+If the person describes an activity that is both a physical activity and typically done outside, such as riding a bike, there should be 2 matching entries; one in "exercise" and also one in "outside" using the same times and description.
+If it is unclear whether an activity qualifies as "physical activity" or "outside", you should error on the side of including it in the returned data. It is better to include more data than needed rather than exlcude data that was needed.
+Any physical activity, including a light workout, or light physical activity, such as cleaning the house, going for a jog, going for a bike ride, or going for a walk, should be considered exercise.
 
 Sleep quality should be based on any description the person uses to describe their sleep.
 "terrible" sleep describes that sleep was not restful at all. For example, they were awake for hours, or couldn't fall asleep for an hour or more.
@@ -18,6 +19,8 @@ Sleep quality should be based on any description the person uses to describe the
 "good" sleep might be if the person indicates the sleep was fine or ok.
 "great" sleep would be if the person indicates the sleep was great or very restful
 If the person makes no indication of the quality of sleep, then the quality will be "undefined".
+Short naps, or time "resting" should be considered sleep.
+Time spent relaxing should not be considered sleep.
 
 For each activity found, include the snipit of text that contained the description of the activity.
 `;

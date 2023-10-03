@@ -24,6 +24,7 @@ export default async function (req, res) {
         {"role": "user", "content": animal},
       ],
       functions: chatFunctions,
+      temperature: 0.2,
     });
     console.log(chatCompletion.choices[0].message.function_call.arguments);
     res.status(200).json({ result: JSON.parse(chatCompletion.choices[0].message.function_call.arguments), originalText: animal });

@@ -6,10 +6,11 @@ import ActivityDisplay from "./ActivityDisplay";
 
 export default function Home() {
   const [activityInput, setActivityInput] = useState("");
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(null);
 
   async function onSubmit(event) {
     event.preventDefault();
+    setResult(null);
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -47,10 +48,12 @@ export default function Home() {
           <textarea rows={5} name="activity" placeholder="What did you do today?" value={activityInput} onChange={(e) => setActivityInput(e.target.value)}></textarea>
           <input type="submit" value="Analyse Activity" />
         </form>
-        <span>Simple Description:</span>
-        <div>I slept well from midnight until about 7am. Then I ate some cereal for breakfast. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes.</div>
-        <span>Full Description:</span>
-        <div>I slept well from midnight until about 7am. Then I ate some cereal for breakfast. After that, I went for a bike ride outside in the park at about 9am for an hour. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes.</div>
+        <div className={styles.exampleGrid}>
+          <span className={styles.exampleHeader}>Simple Description:</span>
+          <span>Full Description:</span>
+          <span>I slept well from midnight until about 7am. Then I ate some cereal for breakfast. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes.</span>
+          <span>I slept well from midnight until about 7am. Then I ate some cereal for breakfast. After that, I went for a bike ride outside in the park at about 9am for an hour. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes. At 3pm I had a nap for 30 minutes.</span>
+        </div>
         <ActivityDisplay data={result} />
       </main>
     </div>
