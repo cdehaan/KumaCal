@@ -3,7 +3,7 @@ import ActivityCircleChart from './ActivityCircleChart';
 import styles from "./index.module.css";
 
 function ActivityDisplay({ data }) {
-  if (data === null) return <div>None</div>;
+  if (data === null) return <div>No data</div>;
   if (data === undefined) return <div>Please wait...</div>;
 
   function AlertNotImplimented() {

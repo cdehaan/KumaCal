@@ -93,11 +93,18 @@ textarea.formTextarea {
 
 div.exampleGrid {
   display: grid;
+  overflow: hidden;
   padding: 1rem;
   gap: 1rem;
   grid-template-columns: 50% 50%;
   width: 60%;
+  max-height: 50rem;
+  transition: max-height 0.5s;
   background: #eee;
+}
+
+div.hideExample {
+  max-height: 1.5rem;
 }
 
 span.exampleHeader {

@@ -7,6 +7,7 @@ import ActivityDisplay from "./ActivityDisplay";
 export default function Home() {
   const [activityInput, setActivityInput] = useState("");
   const [result, setResult] = useState(null);
+  const [hideExample, setHideExample] = useState(false)
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -29,9 +30,14 @@ export default function Home() {
       //setActivityInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
-      console.error("Not 200 error: " + error);
-      alert("Not 200 error: " + error.message);
+      console.error(error);
+      alert(error.message);
+      setResult(null);
     }
+  }
+
+  function ToggleHide() {
+    setHideExample(prev => { return !prev })
   }
 
   return (
@@ -49,7 +55,9 @@ export default function Home() {
           <textarea className={styles.formTextarea} rows={5} name="activity" placeholder="What did you do today?" value={activityInput} onChange={(e) => setActivityInput(e.target.value)}></textarea>
           <input type="submit" value="Analyse Activity" className={result===undefined ? styles.loadingButton : ''} />
         </form>
-        <div className={styles.exampleGrid}>
+        <div className={`${styles.exampleGrid} ${hideExample ? styles.hideExample : ""}`}>
+          <button style={{width: "12rem", height: "1.5rem"}} onClick={ToggleHide}>Toggle Hide Examples</button><span></span>
+          <span style={{gridColumn: "span 2"}}>Hi Marc. You can copy/paste these paragraphs into the textbox. Also, I have goals set for sleep (8 hours), being outside (2 hours) and exercise (1 hour). The circle fills up based on that goal. I wasn't sure how to represent food. What's a good goal for food? Not sure, but we can make any kind of representation, since we have the data.</span>
           <span className={styles.exampleHeader}>Short Examples:</span>
           <span className={styles.exampleHeader}>Full Examples:</span>
           <span>I slept well from midnight until about 7am. Then I ate some cereal for breakfast. At noon, I had a salad for lunch. An hour later, I sat outside for 30 minutes.</span>
