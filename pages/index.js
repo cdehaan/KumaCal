@@ -80,8 +80,6 @@ export default function Home() {
       <main className={styles.main}>
         <img src="/walking.png" className={styles.icon} />
         <h3>Activity Tracking</h3>
-        <button onClick={startDictation}>Start Dictation</button>
-        <button onClick={stopDictation}>Stop Dictation</button>
         <form onSubmit={onSubmit}>
           <textarea rows={5} name="activity" placeholder="What did you do today?" value={activityInput} onChange={(e) => setActivityInput(e.target.value)}></textarea>
           <input type="submit" value="Analyse Activity" />
