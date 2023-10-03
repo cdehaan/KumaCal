@@ -1,9 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
+import ActivityDisplay from "./ActivityDisplay";
+
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
+  const [activityInput, setActivityInput] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -14,7 +16,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ animal: animalInput }),
+        body: JSON.stringify({ activity: activityInput }),
       });
 
       const data = await response.json();
@@ -23,7 +25,7 @@ export default function Home() {
       }
 
       setResult(data.result);
-      setAnimalInput("");
+      //setActivityInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -34,24 +36,18 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <title>Activity Analysis</title>
+        <link rel="icon" href="/walking.png" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
+        <img src="/walking.png" className={styles.icon} />
+        <h3>Activity Tracking</h3>
         <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
-          />
-          <input type="submit" value="Generate names" />
+          <textarea rows={5} name="activity" placeholder="What did you do today?" value={activityInput} onChange={(e) => setActivityInput(e.target.value)}></textarea>
+          <input type="submit" value="Analyse Activity" />
         </form>
-        <div className={styles.result}>{result}</div>
+        <ActivityDisplay data={result} />
       </main>
     </div>
   );

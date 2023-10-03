@@ -6,11 +6,11 @@ const openai = new OpenAI({
 });
 
 export default async function (req, res) {
-  const animal = req.body.animal || '';
+  const animal = req.body.activity || '';
   if (animal.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "Please enter daily activity description",
       }
     });
     return;
@@ -26,7 +26,7 @@ export default async function (req, res) {
       functions: chatFunctions,
     });
     console.log(chatCompletion.choices[0].message.function_call.arguments);
-    res.status(200).json({ result: chatCompletion.choices[0].message.function_call.arguments });
+    res.status(200).json({ result: JSON.parse(chatCompletion.choices[0].message.function_call.arguments), originalText: animal });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
