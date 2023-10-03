@@ -66,6 +66,26 @@ textarea.formTextarea {
   text-align: center;
   cursor: pointer;
 }
+
+.loadingButton {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  background-size: 200% 100%; 
+  animation: slide 0.5s infinite linear;
+
+  /* You might want to adjust other properties to make the button look disabled, like changing the text color, etc. */
+  pointer-events: none; /* This will make sure button is not clickable when loading */
+  color: #999; /* Change the text color to a lighter shade */
+}
+
+@keyframes slide {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
 .main .result {
   font-weight: bold;
   margin-top: 40px;

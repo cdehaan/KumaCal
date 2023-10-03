@@ -10,7 +10,7 @@ export default function Home() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    setResult(null);
+    setResult(undefined);
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -47,7 +47,7 @@ export default function Home() {
         <img src="/wave.png" className={styles.icon} />
         <form onSubmit={onSubmit} style={{marginBottom: "1rem"}}>
           <textarea className={styles.formTextarea} rows={5} name="activity" placeholder="What did you do today?" value={activityInput} onChange={(e) => setActivityInput(e.target.value)}></textarea>
-          <input type="submit" value="Analyse Activity" />
+          <input type="submit" value="Analyse Activity" className={result===undefined ? styles.loadingButton : ''} />
         </form>
         <div className={styles.exampleGrid}>
           <span className={styles.exampleHeader}>Short Examples:</span>
