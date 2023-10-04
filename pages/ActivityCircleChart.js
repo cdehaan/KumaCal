@@ -5,7 +5,9 @@ function ActivityCircleChart({ data, goal, color }) {
 
   function SumDurations(activityArray) {
     if(!activityArray) return 0
-    return activityArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.duration.split(":")[0]) + parseInt(currentValue.duration.split(":")[1])/60, 0)
+    if(!activityArray[0]) return 0
+    if(activityArray[0].duration) return activityArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.duration.split(":")[0]) + parseInt(currentValue.duration.split(":")[1])/60, 0)
+    return activityArray.length
   }
 
   const radius = 25
@@ -52,7 +54,7 @@ function ActivityCircleChart({ data, goal, color }) {
           transform={`rotate(-90 ${radius*1.5} ${radius*1.5})`}
         />
       </svg>
-      <span style={{position:"absolute"}}>{timeSpent}</span>
+      <span style={{position:"absolute"}}>{timeSpent > 0 ? timeSpent : null}</span>
     </div>
   );
 }

@@ -6,8 +6,8 @@ import ActivityDisplay from "./ActivityDisplay";
 
 export default function Home() {
   const [activityInput, setActivityInput] = useState("");
-  const [result, setResult] = useState(null);
-  const [hideExample, setHideExample] = useState(false)
+  const [result, setResult] = useState({uninitialized: true});
+  const [hideExample, setHideExample] = useState(true)
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -32,7 +32,7 @@ export default function Home() {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
-      setResult(null);
+      setResult({uninitialized: true});
     }
   }
 
@@ -55,8 +55,9 @@ export default function Home() {
           <textarea className={styles.formTextarea} rows={5} name="activity" placeholder="What did you do today?" value={activityInput} onChange={(e) => setActivityInput(e.target.value)}></textarea>
           <input type="submit" value="Analyse Activity" className={result===undefined ? styles.loadingButton : ''} />
         </form>
+        <ActivityDisplay data={result} />
         <div className={`${styles.exampleGrid} ${hideExample ? styles.hideExample : ""}`}>
-          <button style={{width: "12rem", height: "1.5rem"}} onClick={ToggleHide}>Toggle Hide Examples</button><span></span>
+          <button style={{width: "12rem", height: "1.5rem", gridColumn: "span 2", justifySelf: "center"}} onClick={ToggleHide}>Toggle Hide Examples</button>
           <span style={{gridColumn: "span 2"}}>Hi Marc. You can copy/paste these paragraphs into the textbox. Also, I have goals set for sleep (8 hours), being outside (2 hours) and exercise (1 hour). The circle fills up based on that goal. I wasn't sure how to represent food. What's a good goal for food? Not sure, but we can make any kind of representation, since we have the data.</span>
           <span className={styles.exampleHeader}>Short Examples:</span>
           <span className={styles.exampleHeader}>Full Examples:</span>
@@ -65,7 +66,6 @@ export default function Home() {
           <span>真夜中から朝の7時くらいまでよく眠れました。 それから朝食にシリアルを食べました。 お昼はサラダをランチに食べました。 1時間後、私は30分間外に座っていました。</span>
           <span>23時から7時間くらいぐっすり眠れました。 それから朝食にシリアルを食べました。 その後、午前9時頃からジムで1時間トレーニングをしました。 お昼はサラダをランチに食べました。 1時間後、私は30分間外に座っていました。 午後3時から午後3時半まで眠ってしまいました。</span>
         </div>
-        <ActivityDisplay data={result} />
       </main>
     </div>
   );

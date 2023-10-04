@@ -39,7 +39,8 @@
 .main form {
   display: flex;
   flex-direction: column;
-  width: 620px;
+  width: 90%;
+  max-width: 620px;
 }
 
 textarea.formTextarea {
@@ -98,7 +99,7 @@ div.exampleGrid {
   gap: 1rem;
   grid-template-columns: 50% 50%;
   width: 60%;
-  max-height: 50rem;
+  max-height: 100rem;
   transition: max-height 0.5s;
   background: #eee;
 }
@@ -112,15 +113,59 @@ span.exampleHeader {
   margin-bottom: 0.5rem;
 }
 
-.main ul {
-  width: 100%;
+div.activityDisplayWrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 90%;
+  max-width: 620px;
+  font-size: 0.9rem;
+}
+
+div.activity {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  border-right: #eee 1px solid;
+  border-bottom: #eee 1px solid;
+  padding: 0.5rem;
+  background: #f8f8f8;
 }
 
 span.activityHeader {
   font-size: 1.3rem;
+  text-align: center;
+}
+
+div.activityData {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+button.activityTimeButton {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: unset;
+  color: unset;
+  font-family: unset;
+}
+
+button.deleteActivity {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: unset;
+  color: #800;
+  font-family: unset;
+}
+
+.main ul {
+  width: 100%;
 }
 
 .activityEntry {
   border-bottom: #8e8ea0 0px solid;
-  padding-bottom: 1rem;
+  padding-bottom: 0.2rem;
+  text-align: center;
 }
