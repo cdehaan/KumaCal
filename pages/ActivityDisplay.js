@@ -50,7 +50,7 @@ function ActivityDisplay({ data }) {
         <div className={styles.activity}>
             <span className={styles.activityHeader}>Sleep</span>
             <div className={styles.activityData}>
-                <ActivityCircleChart data={data.sleep} goal={sleepGoal} color="#33a3db" />
+                <ActivityCircleChart data={data.sleep} goal={sleepGoal} activity={'sleep'} color="#33a3db" />
             </div>
             <div className={styles.activityData}>
                 {ActivityList(data.sleep)}
@@ -59,7 +59,7 @@ function ActivityDisplay({ data }) {
         <div className={styles.activity}>
             <span className={styles.activityHeader}>Food</span>
             <div className={styles.activityData}>
-                <ActivityCircleChart data={data.food} goal={foodGoal} color="#a333db" />
+                <ActivityCircleChart data={data.food} goal={foodGoal} activity={'food'} color="#a333db" />
             </div>
             <div className={styles.activityData}>
                 {ActivityList(data.food)}
@@ -68,7 +68,7 @@ function ActivityDisplay({ data }) {
         <div className={styles.activity}>
             <span className={styles.activityHeader}>Outside</span>
             <div className={styles.activityData}>
-                <ActivityCircleChart data={data.outside} goal={outsideGoal} color="#db3333" />
+                <ActivityCircleChart data={data.outside} goal={outsideGoal} activity={'outside'} color="#db3333" />
             </div>
             <div className={styles.activityData}>
                 {ActivityList(data.outside)}
@@ -77,7 +77,7 @@ function ActivityDisplay({ data }) {
         <div className={styles.activity}>
             <span className={styles.activityHeader}>Exercise</span>
             <div className={styles.activityData}>
-                <ActivityCircleChart data={data.exercise} goal={exerciseGoal} color="#a3db33" />
+                <ActivityCircleChart data={data.exercise} goal={exerciseGoal} activity={'exercise'} color="#a3db33" />
             </div>
             <div className={styles.activityData}>
                 {ActivityList(data.exercise)}

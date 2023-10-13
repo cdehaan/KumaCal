@@ -31,7 +31,7 @@ export default async function (req, res) {
 
     res.status(200).json({ result: resultObject, originalText: animal });
   } catch(error) {
-    // Consider adjusting the error handling logic for your use case
+    // TODO better error handling logic
     if (error.response) {
       console.error(error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);

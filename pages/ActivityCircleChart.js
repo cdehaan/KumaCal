@@ -1,13 +1,32 @@
-function ActivityCircleChart({ data, goal, color }) {
+function ActivityCircleChart({ data, goal, activity, color }) {
 
-  const timeSpent = SumDurations(data)
+  const timeSpent = Math.round(SumDurations(data)*10)/10
   const goalPercent = Math.max(0,Math.min(100, timeSpent/goal * 100))
 
   function SumDurations(activityArray) {
-    if(!activityArray) return 0
-    if(!activityArray[0]) return 0
-    if(activityArray[0].duration) return activityArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.duration.split(":")[0]) + parseInt(currentValue.duration.split(":")[1])/60, 0)
-    return activityArray.length
+    if(!activityArray)      return 0
+    if(!activityArray[0])   return 0
+    if(activity === "food") return activityArray.length
+    return activityArray.reduce((accumulator, currentValue) => {
+      if (!currentValue.duration) {
+        return accumulator; // Ignore data without duration
+      }
+
+      const durationParts = currentValue.duration.split(":");
+
+      if (durationParts.length !== 2) {
+        return accumulator; // Ignore invalid duration format
+      }
+
+      const hours = parseInt(durationParts[0]);
+      const minutes = parseInt(durationParts[1]);
+
+      if (isNaN(hours) || isNaN(minutes)) {
+        return accumulator; // Ignore invalid duration values
+      }
+
+      return accumulator + hours + minutes / 60;
+    }, 0);
   }
 
   const radius = 25

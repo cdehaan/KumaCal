@@ -29,7 +29,7 @@ export default function Home() {
       setResult(data.result);
       //setActivityInput("");
     } catch(error) {
-      // Consider implementing your own error handling logic here
+      // Todo: better error handling logic here
       console.error(error);
       alert(error.message);
       setResult({uninitialized: true});
