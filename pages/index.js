@@ -13,7 +13,7 @@ export default function Home() {
   } else if(data.processStage === 1) {
     topContent = <Prepare data={data} setData={setData} />
   } else if(data.processStage === 2) {
-    topContent = <OnLeave />
+    topContent = <OnLeave data={data} setData={setData} />
   } else {
     topContent = "Top"
   }
@@ -25,7 +25,7 @@ export default function Home() {
         <link rel="icon" href="/walking.png" />
       </Head>
       <div className={styles.mainWrapper}>
-        <div className={styles.redirectHeader} >Looking for the <a href="ActivityRecorder/">Activity log</a>?</div>
+        <div className={styles.redirectHeader} >Looking for the <a href="ActivityRecorder/">Activity log demo</a>?</div>
         <main className={styles.main}>
           {topContent}
         </main>
