@@ -55,7 +55,8 @@ textarea.formTextarea {
   margin-top: 0;
 }
 
-.main input[type="text"] {
+.main input[type="text"],
+.main input[type="password"] {
   padding: 12px 16px;
   border: 1px solid #10a37f;
   border-radius: 4px;
@@ -106,6 +107,164 @@ div.redirectHeader {
 .main .result {
   font-weight: bold;
   margin-top: 40px;
+}
+
+div.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginContainer {
+  max-width: 350px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
+
+.loginHeader {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.loginInput {
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.loginInput:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+  background-color: #0056b3;
+}
+
+.loginButton:active {
+  background-color: #004396;
+}
+
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mascotContainer {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mascotImage {
+  max-width: 150px; /* You can adjust this based on the desired size of the mascot. */
+}
+
+.speechBubble {
+  padding: 10px 15px;
+  margin-bottom: 1rem;
+  max-width: 60%;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.taskListContainer {
+  max-width: 450px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.taskItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.taskItem:last-child {
+  border-bottom: none;
+}
+
+.taskDone,
+.taskPending {
+  font-size: 16px;
+  flex: 1;
+  margin-right: 20px;
+}
+
+.taskDone {
+  color: #4CAF50; /* Green color indicates completed tasks */
+}
+
+.taskPending {
+  color: #FF5722; /* Orange-red color indicates pending tasks */
+}
+
+.taskDone,
+.taskPending {
+    font-size: clamp(12px, 2.5vw, 16px);  /* min-size, preferred size, max-size */
+    flex: 1;
+    margin-right: 20px;
+}
+
+.taskActionButton {
+  padding: 8px 15px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: clamp(10px, 2vw, 14px);  /* min-size, preferred size, max-size */
+}
+
+.taskActionButton:hover {
+  background-color: #0056b3;
+}
+
+.taskActionButton:active {
+  background-color: #004396;
 }
 
 div.exampleGrid {
