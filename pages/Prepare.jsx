@@ -82,7 +82,7 @@ function Prepare({ data, setData }) {
                     No Application uploaded</>}
                 <div className={styles.modalButtonContainer}>
                     <button onClick={() => {alert("Upload application PDF dialog here"); setData(prevData => ({ ...prevData, applicationForLeaveOfAbsenceSubmitted: true}))}}>Upload</button>
-                    <button onClick={() => {if(confirm("Delete application?")) setData(prevData => ({ ...prevData, applicationForLeaveOfAbsenceSubmitted: false}))}}>Delete</button>
+                    <button style={{backgroundColor: data.applicationForLeaveOfAbsenceSubmitted ? "" : "#888", cursor: data.applicationForLeaveOfAbsenceSubmitted ? "" : "unset" }} onClick={() => {if(data.applicationForLeaveOfAbsenceSubmitted && confirm("Delete application?")) setData(prevData => ({ ...prevData, applicationForLeaveOfAbsenceSubmitted: false}))}}>Delete</button>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@ function Prepare({ data, setData }) {
                     No image</>}
                 <div className={styles.modalButtonContainer}>
                     <button onClick={() => {alert("Upload image dialog here"); setData(prevData => ({ ...prevData, medicalCertificateSubmitted: true}))}}>Upload</button>
-                    <button onClick={() => {if(confirm("Delete image?")) setData(prevData => ({ ...prevData, medicalCertificateSubmitted: false}))}}>Delete</button>
+                    <button style={{backgroundColor: data.medicalCertificateSubmitted ? "" : "#888", cursor: data.medicalCertificateSubmitted ? "" : "unset" }} onClick={() => {if(confirm("Delete image?")) setData(prevData => ({ ...prevData, medicalCertificateSubmitted: false}))}}>Delete</button>
                 </div>
             </div>
         </div>
@@ -125,12 +125,14 @@ function Prepare({ data, setData }) {
                         setDateModalOpen(false);
                         setData(prevData => ({ ...prevData, healthExaminationSubmitted:true, healthExaminationDate: selectedDate }))
                     }}>Register</button>
-                    <button onClick={() => {
-                        alert("Date removed");
-                        setDateModalOpen(false);
-                        setSelectedDate('');
-                        setData(prevData => ({ ...prevData, healthExaminationSubmitted:false, healthExaminationDate: ''}))
-                    }}>Delete</button>
+                    <button
+                        style={{backgroundColor: selectedDate === '' ? "#888" : "", cursor: selectedDate === '' ? "unset" : "" }}
+                        onClick={() => {
+                            alert("Date removed");
+                            setDateModalOpen(false);
+                            setSelectedDate('');
+                            setData(prevData => ({ ...prevData, healthExaminationSubmitted:false, healthExaminationDate: ''}))
+                        }}>Delete</button>
                 </div>
             </div>
         </div>
@@ -171,9 +173,9 @@ function Prepare({ data, setData }) {
             <div id="mainList" className={styles.taskListContainer} style={{maxHeight: (unfinishedTasks > 0 || showTasks) ? "100vh" : "0"}}>
                 <div className={styles.taskItem}>
                     <div className={data.applicationForLeaveOfAbsenceSubmitted ? styles.taskDone : styles.taskPending}>
-                        {data.applicationForLeaveOfAbsenceSubmitted ? "☑" : "☐"} Submit Application for Leave of Absence
+                        {data.applicationForLeaveOfAbsenceSubmitted ? "☑" : "☐"} Submit Leave of Absence Application
                     </div>
-                    <button className={styles.taskActionButton} onClick={() => setApplicationModalOpen(!applicationModalOpen)}>Complete Task</button>
+                    <button className={styles.taskActionButton} onClick={() => setApplicationModalOpen(!applicationModalOpen)}>Submit</button>
                 </div>
 
                 <div className={styles.taskItem}>
