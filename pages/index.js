@@ -1,5 +1,5 @@
 import Head from "next/head";
-import useApplicationData from "./useApplicationData";
+import useApplicationData from "../hooks/useApplicationData";
 import Login from "./Login";
 import Prepare from "./Prepare";
 import styles from "./index.module.css";
@@ -11,8 +11,7 @@ export default function Home() {
   if(!data.loggedIn) {
     topContent = <Login data={data} setData={setData} />
   } else if(data.processStage === 1) {
-    topContent = <Login data={data} setData={setData} />
-    //topContent = <Prepare data={data} setData={setData} />
+    topContent = <Prepare data={data} setData={setData} />
   } else if(data.processStage === 2) {
     topContent = "Top"
   } else {
