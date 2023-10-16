@@ -1,47 +1,54 @@
 import { useState, useEffect } from 'react';
 
-const useLocalStorage = (key, initialValue) => {
-  const [storedValue, setStoredValue] = useState(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error('Error reading from local storage:', error);
-      return initialValue;
+function useApplicationData() {
+    const defaultValues = {
+      resetData: resetData,
+      logout: logout,
+      loggedIn: false,
+      username: '',
+      hashedPassword: '',
+      processStage: 0,
+      systemUseConsent: false,
+      applicationForLeaveOfAbsenceSubmitted: false,
+      medicalCertificateSubmitted: false,
+      medicalCertificateImage: '',
+      attendanceStatusSubmitted: false,
+      healthExaminationSubmitted: false,
+      interviewReports: [],
+      regularContactReports: [],
+      dailyActivityReports: [],
     }
-  });
+    const [data, setData] = useState(defaultValues);
 
-  const setValue = (value) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.error('Error writing to local storage:', error);
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        const storedData = localStorage.getItem('userData');
+        if (storedData) {
+            console.log("Set user data initially to:" + storedData)
+            setData({ ...JSON.parse(storedData), resetData: resetData, logout: logout });
+          }
+        }
+    }, []);
+
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        localStorage.setItem('userData', JSON.stringify(data));
+        console.log("Set user data to:" + JSON.stringify(data))
+      }
+    }, [data]);
+
+    function resetData() {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem('userData'); // Removes the user data from localStorage
+      }
+      setData({ ...defaultValues, resetData: resetData, logout: logout  }); // Important to pass the resetData function to keep it as part of the new state
     }
-  };
 
-  return [storedValue, setValue];
-};
+    function logout() {
+      setData(prevData => ({ ...prevData, loggedIn: false }))
+    }
 
-const useApplicationData = () => {
-  const [data, setData] = useLocalStorage('applicationData', {
-    loggedIn: false,
-    username: '',
-    hashedPassword: '',
-    processStage: 0,
-    systemUseConsent: false,
-    applicationForLeaveOfAbsenceSubmitted: false,
-    medicalCertificateSubmitted: false,
-    medicalCertificateImage: '',
-    attendanceStatusSubmitted: false,
-    healthExaminationSubmitted: false,
-    interviewReports: [],
-    regularContactReports: [],
-    dailyActivityReports: [],
-  });
-
-  return [data, setData];
-};
+    return [data, setData];
+}
 
 export default useApplicationData;
