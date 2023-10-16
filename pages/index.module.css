@@ -29,6 +29,7 @@ div.mainWrapper {
   flex: 1;
 }
 .main {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,6 +108,46 @@ div.redirectHeader {
 .main .result {
   font-weight: bold;
   margin-top: 40px;
+}
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+.modal {
+  width: 250px;
+  padding: 20px;
+  margin: 5rem 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal button {
+  padding: 10px 15px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal button:hover {
+  background-color: #0056b3;
 }
 
 div.loginContainer {
@@ -265,6 +306,52 @@ div.loginContainer {
 
 .taskActionButton:active {
   background-color: #004396;
+}
+
+.menuContainer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.hamburgerIcon {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.pulloutMenu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 150px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pulloutMenu button {
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pulloutMenu button:hover {
+  background-color: #0056b3;
 }
 
 div.exampleGrid {

@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 
 function Prepare({ data, setData }) {
+    const [menuOpen, setMenuOpen] = useState(false);
+
     const logoutButton = <button onClick={data.logout}>Logout</button>
     const deleteDataButton = <button onClick={data.resetData}>Delete</button>
+
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     function DummyFunction() {
         console.log("Task action clicked!");
@@ -18,6 +35,20 @@ function Prepare({ data, setData }) {
           
     return (
         <>
+            <div className={styles.menuContainer}>
+                <div className={styles.hamburgerIcon} onClick={() => setMenuOpen(!menuOpen)}>
+                    ☰
+                </div>
+                
+                {menuOpen && (
+                    <div className={styles.modalBackground}>
+                        <div className={styles.modal} ref={modalRef}>
+                            <button onClick={data.logout}>Logout</button>
+                            <button onClick={data.resetData}>Delete</button>
+                        </div>
+                    </div>
+                )}
+            </div>
             <div className={styles.mascotContainer}>
                 <div className={styles.speechBubble}>{bearSpeech}</div>
                 <img src="/bear.png" alt="Bear Mascot" className={styles.mascotImage} />
