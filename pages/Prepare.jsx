@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 
 function Prepare({ data, setData }) {
+    if(!data) return null;
+
     const [menuOpen, setMenuOpen] = useState(false);
     const [applicationModalOpen, setApplicationModalOpen] = useState(false);
     const [imageModalOpen, setImageModalOpen] = useState(false);

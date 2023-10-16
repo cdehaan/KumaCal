@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from "./index.module.css";
 
 function Login({ data, setData }) {
+    if(!data) return null;
+
     const [inputUsername, setInputUsername] = useState('');
     const [inputPassword, setInputPassword] = useState('');
     const [passwordPlaceholder, setPasswordPlaceholder] = useState('');
