@@ -41,10 +41,10 @@ function Login({ data, setData }) {
   
     // Encode the concatenated string as bytes
     const encoder = new TextEncoder();
-    const data = encoder.encode(concatenatedString);
+    const dataBytes = encoder.encode(concatenatedString);
   
     // Create a SHA-256 hash of the data
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', dataBytes);
   
     // Convert the hashBuffer to a hexadecimal string
     const hashArray = Array.from(new Uint8Array(hashBuffer));
