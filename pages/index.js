@@ -13,7 +13,8 @@ export default function Home() {
   } else if(data.processStage === 1) {
     topContent = <Prepare data={data} setData={setData} />
   } else if(data.processStage === 2) {
-    topContent = <OnLeave data={data} setData={setData} />
+    topContent = "Top"
+    //topContent = <OnLeave data={data} setData={setData} />
   } else {
     topContent = "Top"
   }
