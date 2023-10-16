@@ -110,6 +110,11 @@ div.redirectHeader {
   margin-top: 40px;
 }
 
+div.modalButtonContainer {
+  display: flex;
+  justify-content:space-around;
+}
+
 .modalBackground {
   position: fixed;
   top: 0;
@@ -118,10 +123,16 @@ div.redirectHeader {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   z-index: 10;
 }
+
+.logoutModal {
+  justify-content: flex-end;
+  align-items: flex-start;  
+}
+
 
 .modal {
   width: 250px;
@@ -131,6 +142,7 @@ div.redirectHeader {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  text-align: center;
   gap: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -148,6 +160,17 @@ div.redirectHeader {
 
 .modal button:hover {
   background-color: #0056b3;
+}
+
+.dateInput {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: block;
+  box-sizing: border-box;
 }
 
 div.loginContainer {
