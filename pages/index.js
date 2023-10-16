@@ -3,6 +3,7 @@ import useApplicationData from "../hooks/useApplicationData";
 import Login from "./Login";
 import Prepare from "./Prepare";
 import styles from "./index.module.css";
+import OnLeave from "./OnLeave";
 
 export default function Home() {
   const [data, setData] = useApplicationData();
@@ -13,12 +14,10 @@ export default function Home() {
   } else if(data.processStage === 1) {
     topContent = <Prepare data={data} setData={setData} />
   } else if(data.processStage === 2) {
-    topContent = "Top"
+    topContent = <OnLeave data={data} setData={setData} />
   } else {
     topContent = "Top"
   }
-  //topContent = <OnLeave data={data} setData={setData} />
-
 
   return (
     <>

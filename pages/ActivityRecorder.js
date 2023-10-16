@@ -3,9 +3,13 @@ import styles from "./index.module.css";
 import ActivityDisplay from "./ActivityDisplay";
 
 export default function ActivityRecorder() {
+  // Subtract 9 hours from the current date and time (Japan time), then format the date to 'YYYY-MM-DD'
+  const formattedDate = new Date(new Date().getTime() - (9 * 60 * 60 * 1000)).toISOString().split('T')[0];
+
   const [activityInput, setActivityInput] = useState("");
   const [result, setResult] = useState({uninitialized: true});
   const [hideExample, setHideExample] = useState(true)
+  const [selectedDate, setSelectedDate] = useState(formattedDate);
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -34,22 +38,26 @@ export default function ActivityRecorder() {
     }
   }
 
-  function ToggleHide() {
-    setHideExample(prev => { return !prev })
-  }
-
   return (
     <div className={styles.main}>
         <img src="/walking.png" className={styles.icon} />
         <h3>Activity Tracking</h3>
+        <input 
+            type="date" 
+            value={selectedDate} 
+            onChange={(event) => setSelectedDate(event.target.value)}
+            className={styles.dateInput}
+            style={{width: "12rem"}}
+        />
         <img src="/wave.png" className={styles.icon} />
         <form onSubmit={onSubmit} style={{marginBottom: "1rem"}}>
             <textarea className={styles.formTextarea} rows={5} name="activity" placeholder="What did you do today?" value={activityInput} onChange={(e) => setActivityInput(e.target.value)}></textarea>
             <input type="submit" value="Analyse Activity" className={result===undefined ? styles.loadingButton : ''} />
         </form>
+        {result && result.uninitialized != true && result != undefined && <span>Save the data</span>}
         <ActivityDisplay data={result} />
         <div className={`${styles.exampleGrid} ${hideExample ? styles.hideExample : ""}`}>
-            <button style={{width: "12rem", height: "1.5rem", gridColumn: "span 2", justifySelf: "center"}} onClick={ToggleHide}>Toggle Hide Examples</button>
+            <button style={{width: "12rem", height: "1.5rem", gridColumn: "span 2", justifySelf: "center"}} onClick={() => setHideExample(prev => { return !prev })}>Toggle Hide Examples</button>
             <span style={{gridColumn: "span 2"}}>Hi Marc. You can copy/paste these paragraphs into the textbox. Also, I have goals set for sleep (8 hours), being outside (2 hours) and exercise (1 hour). The circle fills up based on that goal. I wasn't sure how to represent food. What's a good goal for food? Not sure, but we can make any kind of representation, since we have the data.</span>
             <span className={styles.exampleHeader}>Short Examples:</span>
             <span className={styles.exampleHeader}>Full Examples:</span>
